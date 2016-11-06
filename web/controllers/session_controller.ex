@@ -7,11 +7,20 @@ defmodule Events.SessionController do
 
   def create(conn, params) do
     if System.get_env("ADMIN_PASSWORD") == params["password"] do
-      IO.puts "Logged in"
+      conn
+      |> Guardian.Plug.sign_in("admin")
+      |> redirect(to: "/admin")
     else
       conn
       |> put_flash(:error, "Incorrect password.")
       |> render(:new)
     end
+  end
+
+  def delete(conn, _params) do
+    conn
+    |> Guardian.Plug.sign_out
+    |> put_flash(:info, "Logged out successfully.")
+    |> redirect(to: "/")
   end
 end

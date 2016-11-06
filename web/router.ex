@@ -13,11 +13,25 @@ defmodule Events.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :browser_auth do
+    plug Guardian.Plug.VerifySession
+    plug Guardian.Plug.EnsureAuthenticated, handler: Events.PageController
+  end
+
+  scope "/admin", Events do
+    pipe_through [:browser, :browser_auth]
+
+    get "/", AdminController, :dashboard
+  end
+
   scope "/", Events do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    resources "/session", SessionController, singleton: true, only: [:new, :create]
+    get "/login", SessionController, :new
+    post "/login", SessionController, :create
+    get "/logout", SessionController, :delete
+    # resources "/session", SessionController, singleton: true, only: [:new, :create, :delete]
   end
 
   # Other scopes may use custom stacks.
