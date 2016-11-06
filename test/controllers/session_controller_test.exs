@@ -15,4 +15,9 @@ defmodule SessionControllerTest do
     conn = post conn, "/login", ["password": "invalid_password"]
     assert html_response(conn, 200) =~ "Incorrect password."
   end
+
+  test "GET /logout sends user to homepage", %{conn: conn} do
+    conn = get conn, "/logout"
+    assert redirected_to(conn, 302) =~ "/"
+  end
 end
