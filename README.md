@@ -1,4 +1,4 @@
-# Events
+# Events [![Build Status](https://travis-ci.org/abdulsattar/events.svg?branch=master)](https://travis-ci.org/abdulsattar/events)
 
 To start your Phoenix app:
 
