@@ -6,7 +6,7 @@ defmodule Events.SessionController do
   end
 
   def create(conn, params) do
-    if System.get_env("ADMIN_PASSWORD") == params["password"] do
+    if Application.fetch_env!(:events, :admin_password) == params["password"] do
       conn
       |> Guardian.Plug.sign_in("admin")
       |> redirect(to: "/admin")

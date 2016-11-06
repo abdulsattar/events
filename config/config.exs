@@ -17,6 +17,9 @@ config :events, Events.Endpoint,
   pubsub: [name: Events.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+config :events,
+  admin_password: "sattar"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

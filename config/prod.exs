@@ -17,6 +17,9 @@ config :events, Events.Endpoint,
   cache_static_manifest: "priv/static/manifest.json",
   secret_key_base: System.get_env("SECRET_KEY_BASE")
 
+config :events,
+  admin_password: System.get_env("ADMIN_PASSWORD")
+
 # Do not print debug messages in production
 config :logger, level: :info
 
