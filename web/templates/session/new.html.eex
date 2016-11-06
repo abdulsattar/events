@@ -3,7 +3,7 @@
     <%= form_tag "/login", method: :post %>
       <h3>Admin Login</h3>
       <div class="form-group">
-        <input type="text" id="password" name="password" class="form-control input-sm" placeholder="Password" />
+        <input type="password" id="password" name="password" class="form-control input-sm" placeholder="Password" />
       </div>
       <input type="submit" class="btn btn-primary" value="Login"/>
     </form>
