@@ -60,5 +60,6 @@ config :logger, level: :info
 # Configure your database
 config :events, Events.Repo,
   adapter: Ecto.Adapters.Postgres,
-  url: String.to_integer(System.get_env("POOL_SIZE") || "10"),
+  url: System.get_env("DATABASE_URL"),
+  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
   ssl: true
