@@ -1,5 +1,6 @@
 defmodule Events.Router do
   use Events.Web, :router
+  use ExAdmin.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -18,10 +19,11 @@ defmodule Events.Router do
     plug Guardian.Plug.EnsureAuthenticated, handler: Events.PageController
   end
 
-  scope "/admin", Events do
-    pipe_through [:browser, :browser_auth]
+  scope "/admin", ExAdmin do
+    pipe_through [:browser]
 
-    get "/", AdminController, :dashboard
+    admin_routes
+    # get "/", AdminController, :dashboard
   end
 
   scope "/", Events do

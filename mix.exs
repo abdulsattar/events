@@ -40,6 +40,7 @@ defmodule Events.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:guardian, "~> 0.13.0"},
+      {:ex_admin, github: "smpallen99/ex_admin"}
     ]
   end
 

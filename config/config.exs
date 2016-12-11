@@ -31,6 +31,16 @@ config :guardian, Guardian,
   secret_key: "k3V9C2AIDkR9WKcciy9nXpN6qrVbB0wY56BBeNI26YpZJCl9bRNDgZHhISXTfnlb",
   serializer: Events.GuardianSerializer
 
+config :ex_admin,
+  repo: Events.Repo,
+  module: Events,
+  modules: [
+    Events.ExAdmin.Dashboard,
+  ]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
+
+config :xain, :after_callback, {Phoenix.HTML, :raw}
+
